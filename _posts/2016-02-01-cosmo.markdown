@@ -1,0 +1,8 @@
+---
+layout: post
+title:  "Cosmo"
+date:   2016-02-01 15:08:10 -0500
+img: img/portfolio/cosmo.png
+modalID: cosmo
+---
+Cosmo is a personal assistant to help manage academic assignments and schedule.
