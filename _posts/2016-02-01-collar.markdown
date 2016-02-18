@@ -1,0 +1,7 @@
+---
+layout: post
+title:  "Collar"
+img: img/portfolio/collar.png
+modalID: collar
+---
+Collar is a class built in Haxe for referencing out of bounds indexes in arrays. The class will cycle through itself and always return a value.
