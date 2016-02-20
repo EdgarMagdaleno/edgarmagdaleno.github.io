@@ -47,6 +47,8 @@ ApplicationMain.create = function() {
 	types.push("IMAGE");
 	urls.push("graphics/tile.png");
 	types.push("IMAGE");
+	urls.push("graphics/next.png");
+	types.push("IMAGE");
 	if(ApplicationMain.config.assetsPrefix != null) {
 		var _g1 = 0;
 		var _g = urls.length;
@@ -69,7 +71,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "173", company : "", file : "Main", fps : 60, name : "Life", orientation : "", packageName : "com.example.app", version : "1.0.0", windows : [{ antialiasing : 0, background : 3355443, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 480, parameters : "{}", resizable : true, stencilBuffer : true, title : "Life", vsync : false, width : 640, x : null, y : null}]};
+	ApplicationMain.config = { build : "205", company : "", file : "Main", fps : 60, name : "Life", orientation : "", packageName : "com.example.app", version : "1.0.0", windows : [{ antialiasing : 0, background : 3355443, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 520, parameters : "{}", resizable : false, stencilBuffer : true, title : "Life", vsync : false, width : 640, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	var hasMain = false;
@@ -1870,6 +1872,9 @@ var DefaultAssetLibrary = function() {
 	id = "graphics/tile.png";
 	this.path.set(id,id);
 	this.type.set(id,"IMAGE");
+	id = "graphics/next.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
 	var assetsPrefix = null;
 	if(ApplicationMain.config != null && Object.prototype.hasOwnProperty.call(ApplicationMain.config,"assetsPrefix")) assetsPrefix = ApplicationMain.config.assetsPrefix;
 	if(assetsPrefix != null) {
@@ -3158,6 +3163,8 @@ MainScene.__super__ = com_haxepunk_Scene;
 MainScene.prototype = $extend(com_haxepunk_Scene.prototype,{
 	tiles: null
 	,changes: null
+	,velocity: null
+	,play: null
 	,begin: function() {
 		com_haxepunk_utils_Input.define("Next",[13]);
 		this.tiles = new com_haxepunk_graphics_Tilemap(com_haxepunk_HXP.renderMode == com_haxepunk_RenderMode.HARDWARE?(function($this) {
@@ -3177,18 +3184,36 @@ MainScene.prototype = $extend(com_haxepunk_Scene.prototype,{
 			return $r;
 		}(this)),640,480,20,20);
 		this.changes = [];
+		this.velocity = 0;
+		this.play = false;
 		this.addGraphic(this.tiles,0,0,0);
+		this.addGraphic(new com_haxepunk_graphics_Image(com_haxepunk_HXP.renderMode == com_haxepunk_RenderMode.HARDWARE?(function($this) {
+			var $r;
+			var e2 = com_haxepunk_ds_Either.Right(com_haxepunk_graphics_atlas_Atlas.loadImageAsRegion((function($this) {
+				var $r;
+				var data1 = com_haxepunk_graphics_atlas_AtlasData.getAtlasDataByName("graphics/next.png",true);
+				$r = data1;
+				return $r;
+			}($this))));
+			$r = e2;
+			return $r;
+		}(this)):(function($this) {
+			var $r;
+			var e3 = com_haxepunk_ds_Either.Left(com_haxepunk_HXP.getBitmap("graphics/next.png"));
+			$r = e3;
+			return $r;
+		}(this))),0,295,490);
 		this.drawGrid();
 	}
 	,drawGrid: function() {
 		var _g1 = 0;
-		var _g = this.tiles._columns;
+		var _g = this.tiles._columns + 1;
 		while(_g1 < _g) {
 			var x = _g1++;
 			this.addGraphic(com_haxepunk_graphics_Image.createRect(1,480,10985667,.5),0,x * 20,0);
 		}
 		var _g11 = 0;
-		var _g2 = this.tiles._rows;
+		var _g2 = this.tiles._rows + 1;
 		while(_g11 < _g2) {
 			var y = _g11++;
 			this.addGraphic(com_haxepunk_graphics_Image.createRect(640,1,10985667,.5),0,0,y * 20);
@@ -3196,14 +3221,25 @@ MainScene.prototype = $extend(com_haxepunk_Scene.prototype,{
 	}
 	,update: function() {
 		com_haxepunk_Scene.prototype.update.call(this);
-		if(com_haxepunk_utils_Input.mousePressed) this.flipTile();
-		if(com_haxepunk_utils_Input.pressed(com_haxepunk_utils__$Input_InputType_$Impl_$.fromLeft("Next"))) {
-			this.applyRules();
-			this.makeChanges();
+		if(com_haxepunk_utils_Input.mousePressed) {
+			if(this.mouseInsideGrid()) this.flipTile(); else if(this.nextPressed()) this.next();
 		}
+	}
+	,next: function() {
+		this.applyRules();
+		this.makeChanges();
+	}
+	,nextPressed: function() {
+		if(com_haxepunk_utils_Input.get_mouseX() >= 295 && com_haxepunk_utils_Input.get_mouseX() <= 345) {
+			if(com_haxepunk_utils_Input.get_mouseY() >= 490 && com_haxepunk_utils_Input.get_mouseY() <= 515) return true;
+		}
+		return false;
 	}
 	,flipTile: function() {
 		if(this.tiles.getTile(this.getColumn(),this.getRow()) == 0) this.tiles.setTile(this.getColumn(),this.getRow(),1); else this.tiles.setTile(this.getColumn(),this.getRow(),0);
+	}
+	,mouseInsideGrid: function() {
+		if(com_haxepunk_utils_Input.get_mouseY() < 480) return true; else return false;
 	}
 	,applyRules: function() {
 		var _g1 = 0;
@@ -3313,7 +3349,7 @@ NMEPreloader.prototype = $extend(openfl_display_Sprite.prototype,{
 		return 3355443;
 	}
 	,getHeight: function() {
-		var height = 480;
+		var height = 520;
 		if(height > 0) return height; else return openfl_Lib.current.stage.stageHeight;
 	}
 	,getWidth: function() {
