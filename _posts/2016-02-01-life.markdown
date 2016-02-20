@@ -1,0 +1,9 @@
+---
+layout: post
+title:  "Life"
+img: img/portfolio/life.png
+modalID: life
+---
+John Conway's game of life clone. <br> <br>
+Press Enter to get to the next generation. <br>
+[Play](/Life/index.html)
