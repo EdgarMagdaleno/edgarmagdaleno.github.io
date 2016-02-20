@@ -71,7 +71,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "205", company : "", file : "Main", fps : 60, name : "Life", orientation : "", packageName : "com.example.app", version : "1.0.0", windows : [{ antialiasing : 0, background : 3355443, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 520, parameters : "{}", resizable : false, stencilBuffer : true, title : "Life", vsync : false, width : 640, x : null, y : null}]};
+	ApplicationMain.config = { build : "208", company : "", file : "Main", fps : 60, name : "Life", orientation : "", packageName : "com.example.app", version : "1.0.0", windows : [{ antialiasing : 0, background : 3355443, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : false, height : 520, parameters : "{}", resizable : false, stencilBuffer : true, title : "Life", vsync : false, width : 640, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	var hasMain = false;
@@ -3224,6 +3224,7 @@ MainScene.prototype = $extend(com_haxepunk_Scene.prototype,{
 		if(com_haxepunk_utils_Input.mousePressed) {
 			if(this.mouseInsideGrid()) this.flipTile(); else if(this.nextPressed()) this.next();
 		}
+		if(com_haxepunk_utils_Input.pressed(com_haxepunk_utils__$Input_InputType_$Impl_$.fromLeft("Next"))) this.next();
 	}
 	,next: function() {
 		this.applyRules();
