@@ -5,3 +5,13 @@ img: img/portfolio/zoon.jpg
 modalID: zoon
 ---
 Zoon is a game developed in the programming languaje Haxe, with the HaxePunk engine.
+
+Each player can chose their ship, abilities, and also invest points into their stats.
+Life: How much hitpoints the player has.<br>
+Speed: How fast a player can move.<br>
+Energy: This is the resource used to deploy abilities in the game. Investing points into this increases the maximum energy capacity.<br>
+
+Each ability costs a certain amount of energy, depending on how much damage it does or its effects on the other player. There are no cooldowns on any ability, however, energy regenerates rather slowly, so players have to balance it so they can have enough for both attacking and defending at a certain point. This incentivizes planning a strategy for place and time of attacks so that you can react to an incoming ability.
+
+Video Demostration:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oGhiiagyT7Q" frameborder="0" allowfullscreen></iframe>
