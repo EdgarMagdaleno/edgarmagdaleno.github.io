@@ -11,7 +11,17 @@ Life: How much hitpoints the player has.<br>
 Speed: How fast a player can move.<br>
 Energy: This is the resource used to deploy abilities in the game. Investing points into this increases the maximum energy capacity.<br>
 
-Each ability costs a certain amount of energy, depending on how much damage it does or its effects on the other player. There are no cooldowns on any ability, however, energy regenerates rather slowly, so players have to balance it so they can have enough for both attacking and defending at a certain point. This incentivizes planning a strategy for place and time of attacks so that you can react to an incoming ability.
+Each ability costs a certain amount of energy, depending on how much damage it does or its effects on the other player. There are no cooldowns on any ability, however, energy regenerates rather slowly, so players have to balance it so they can have enough for both attacking and defending at a certain point. This incentivizes planning a strategy for place and time of attacks so that you can react to an incoming ability.<br>
+
+There are 7 abilities in total in the game:<br>
+-Shotgun: Launches 5 projectiles that deal damage to the enemy.<br>
+-Reflector: Deploys a wall that bounces all projectiles on contact.<br>
+-Paralyzer: Quick explosion around the player that paralyzes the enemy at contact.<br>
+-Buster: Launches a projectile that deals high damage, energy cost is high.<br>
+-Snowball: Projectile that slows and deal damage to the enemy.<br>
+-Blizzard: Launches 8 projectiles around the player that slow and deal damage to the enemy. <br>
+-Fire: The player rapidly launches himself into a ball of fire, gaining high speed and dealing tons of damage on contact with the enemy. <br>
+
 
 Video Demostration:
 <iframe width="560" height="315" src="https://www.youtube.com/embed/oGhiiagyT7Q" frameborder="0" allowfullscreen></iframe>
